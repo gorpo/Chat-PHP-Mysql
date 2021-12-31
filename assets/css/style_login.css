@@ -32,6 +32,7 @@
 }
 
 .login input[type="text"],
+.login input[type="email"],
 .login input[type="password"] {
   max-width:400px;
   width: 70%;
@@ -51,9 +52,9 @@
   font-size: 18px;
   color: #fff;
   max-width:400px;
-  width: 25%;
+  width: 70%;
   line-height:2em;
-  margin:0.5em 2em;
+  margin:0.3em 0em;
   border-radius:5px;
   border:2px solid #f2f2f2;
   outline:none;
@@ -61,13 +62,14 @@
 }
 .btnlogar:hover {
   background-color: #5018e0;
+
   font-family: 'Share Tech Mono', sans-serif;
   font-size: 18px;
   color: #fff;
   max-width:400px;
-  width: 25%;
+  width: 70%;
   line-height:2em;
-  margin:0.5em 2em;
+  margin:0.3em 0em;
   border-radius:5px;
   border:2px solid #f2f2f2;
   outline:none;

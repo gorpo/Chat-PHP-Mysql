@@ -1,56 +1,47 @@
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Corporate Smart Control</title>
-  <meta property="og:site_name" content="Corporate Smart Control"/>
-  <meta property="og:title" content="Corporate Smart Control"/>
-  <meta property="og:url" content="https://corporatesmartcontrol.com/"/>
-  <meta property="og:description" content="Corporate Smart Control"/>
-  <meta property="og:image" content="assets/images/logo.svg"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Corporate Smart Control</title>
+    <meta property="og:site_name" content="Corporate Smart Control"/>
+    <meta property="og:title" content="Corporate Smart Control"/>
+    <meta property="og:url" content="https://corporatesmartcontrol.com/"/>
+    <meta property="og:description" content="Corporate Smart Control"/>
+    <meta property="og:image" content="assets/images/logo.svg"/>
     <title>Corporate Smart Contol Chat </title>
     <!-- Bootstrap core CSS -->
-    <link href="../chat/vendor/twbs/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="../chat/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js" rel="stylesheet">
-
-</head>
+</head>   
 <body>
-
-
-
-    <div class="container-fluid" id="minhaDiv" >
-        <div style="width: 300px; max-height: 800px; z-index: 1; position:absolute; float: right; margin-bottom: 0; position: absolute; right: 0px; bottom: 0px; overflow:auto; ">
-    <div id="chat_msg_area1" class="pt-2 pb-2" style="height: 30vh;">
- 
+<div class="container-fluid" id="minhaDiv" >
+    <div style="width: 300px; max-height: 800px; z-index: 1; position:absolute; float: right; margin-bottom: 0; position: absolute; right: 0px; bottom: 0px; overflow:auto; ">
+    <div id="chat_msg_area1" class="pt-2 pb-2" style="height: 38vh;">
     <div class="card-header">
         <div class="row">
             <div class="col" id="chat_user_data1" style="margin-bottom: 7px;">
-                <span  id="login_user_image"></span><button type="button" class="btn btn-danger btn-sm float-end" id="close_chat1" onclick="Mudarestado('minhaDiv')">X</button>
+                <span  id="login_user_image"></span>
+                <button type="button" class="btn btn-danger btn-sm float-end" id="close_chat1" onclick="Mudarestado('minhaDiv')">X</button>
             </div>
         </div>
         <div id="notification_area" class=""></div>
-        <div class="pt-4 pb-4 h-50 overflow-auto">
-        <input type="text" name="search_people" id="search_people" class="form-control" placeholder="Procure usuário" autocomplete="off" />
-        <div id="search_people_area" class="mt-3"></div>
-    </div>
-    Conecte-se
-    <div  id="connected_people_area"></div>
-    
-               
-<button hidden class="btn btn-secondary btn-sm" id="setting_button">Setting</button>
-<button hidden class="btn btn-primary btn-sm" id="logout_button">Logout</button>
-
+            <div class="pt-4 pb-4 h-50 overflow-auto">
+                <input type="text" name="search_people" id="search_people" class="form-control" placeholder="Procure usuário" autocomplete="off" />
+                <div id="search_people_area" class="mt-3"></div>
+            </div>
+            Conecte-se
+            <div  id="connected_people_area"></div>
+            <button hidden class="btn btn-secondary btn-sm" id="setting_button">Setting</button>
+            <button hidden class="btn btn-primary btn-sm" id="logout_button">Logout</button>
 </div></div></div></div></div></div></div><div id="chat_area"></div></div></div></div></div>
- 
-
 </body>
 </html>
+
 <script type="text/javascript">
     document.getElementById("chat_area").style.cssText="overflow:invisible;"; 
 </script>
-
-
 <!-- abre e fecha o chat -->
 <style type="text/css">
     fab{
@@ -125,17 +116,17 @@ function check_login()
         if(responseData.user_name && responseData.image)
         {
            
-            _('login_user_image').innerHTML = '<img src="../chat/'+responseData.image+'" class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"/>' +'<strong class="text-gray-dark">' + responseData.user_name + '</strong>';
+            _('login_user_image').innerHTML = '<img src="'+responseData.image+'" class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"/>' +'<strong class="text-gray-dark">' + responseData.user_name + '</strong>';
 
             load_chat_request();
         }
         else
         {
-
             window.location.href = 'index.html';
         }
     });
 }
+
 
 $('#logout_button').onclick = function(){
     var form_data = new FormData();
@@ -375,13 +366,7 @@ function load_chat_connected_people()
                 html += '<button type="button" name="start_request" class="btn btn-warning btn-sm start_request" id="'+responseData[i].uc+'">Entrar</button>';
                 html += '</div>';
                 html += '</div></div>';
-            
-
             }
-
-
-           
-
         }
         else
         {
@@ -562,7 +547,6 @@ function fetch_chat_data(receiver_user_id, last_chat_datetime)
         if(responseData.receiver_image && responseData.receiver_name)
         {
             $('#chat_user_data').innerHTML = '<div class="d-flex text-muted"><img class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" src="../chat/images/'+responseData.receiver_image+'" /><div class="mb-0 small lh-sm w-100 align-middle"><div class="d-flex justify-content-between"><strong class="text-gray-dark">'+responseData.receiver_name+'</strong></div></div></div>';
-
         }
 
         var chat_html = '';
@@ -600,8 +584,6 @@ function fetch_chat_data(receiver_user_id, last_chat_datetime)
 
             scroll_top();
         }
-        
-
     });
 }
 
@@ -616,7 +598,6 @@ function setting_page()
 {
     var user_data = '';
     fetch('../chat/backend/fetch_user_data.php').then(function(response){
-
         return response.json();
 
     }).then(function(responseData){
@@ -652,7 +633,6 @@ function setting_page()
         html += '</div>';
         html += '<button class="w-100 btn btn-lg btn-primary" id="save_button" type="submit">Enviar</button>';
         html += '</form></div></div>';
-
         $('#chat_area').innerHTML = html;
 
         $('#close_setting_page').onclick = function(){
@@ -660,29 +640,19 @@ function setting_page()
         }
 
         $('#save_button').onclick = function(){
-
             var form_data = new FormData($('#setting'));
-
             $('#save_button').disabled = true;
-
             $('#save_button').innerHTML = 'Aguarde...';
-
             fetch('../chat/backend/setting.php', {
-
                 method:"POST",
-
                 body:form_data
 
             }).then(function(response){
-
                 return response.json();
 
             }).then(function(responseData){
-
                 $('#save_button').disabled = false;
-
                 $('#save_button').innerHTML = 'Save';
-
                 if(responseData.error != '')
                 {
                     var error = '<div class="alert alert-danger"><ul>'+responseData.error+'</ul></div>';
@@ -691,48 +661,29 @@ function setting_page()
                 else
                 {
                     $('#register_error').innerHTML = '<div class="alert alert-success">' + responseData.success + '</div>';
-
                     $('#user_image').value = '';
-
                     check_login();
-
-                    $('#user_uploaded_image').src = 'images/'+responseData.ui+'';
-
+                    $('#user_uploaded_image').src = '../chat/images/'+responseData.ui+'';
                     $('#hidden_user_image').value = responseData.ui;
-
                 }
 
                 setTimeout(function(){
-
                     _('register_error').innerHTML = '';
 
                 }, 10000);
-
             });
         }
-        
     });
-
-    
 }
 
 $('#setting_button').onclick = function(){
-
     reset_chat_area();
-
     setting_page();
 };
-
-
 
 function _(element)
 {
     return document.getElementById(element);
 }
-
-
-
-
-
 </script>
 
