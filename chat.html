@@ -19,47 +19,94 @@
 
 <body>
 
-    <div class="container-fluid">
+  
+
+<div class="content"></div>
+
+    <div class="container-fluid" id="minhaDiv">
+
+      
+        <div style="width: 300px; height: auto; z-index: 1; position:absolute; float: right; margin-bottom: 0; position: absolute; right: 0px; bottom: 0;">
+    <div id="chat_msg_area1" class="pt-2 pb-2" style="height: 38vh;">
+ 
+    <div class="card-header">
         <div class="row">
-            <div class="col-sm-4 col-md-3 vh-100 bg-light border-end">
-                <div class="mt-4 mb-4 text-center">
-                    <span id="login_user_image"></span><br />
-                    <div class="mt-3 mb-3" id="login_user_name"></div>
-                    <div class="text-center mt-3 mb-3">
-                        <button type="button" class="btn btn-secondary btn-sm" id="setting_button">Setting</button>
-                        <button type="button" class="btn btn-primary btn-sm" id="logout_button">Logout</button>
-                    </div>
-                </div>
-                <hr class="bg-secondary border-2 border-top border-secondary">
-                <div class="mt-4 mb-4 overflow-auto">
-                    <h6 class="border-bottom pb-2 mb-0">Usuários conectados</h6>
-                    <div id="connected_people_area"></div>
-                </div>
+            <div class="col" id="chat_user_data1" style="margin-bottom: 7px;">
+                <span  id="login_user_image"></span>
             </div>
-            <div class="col-sm-4 col-md-6 vh-100">
-                <div id="chat_area">
-                    
-                </div>
-            </div>
-            <div class="col-sm-4 col-md-3 vh-100 bg-light border-start">
-                <div class="pt-4 pb-4 h-50 overflow-auto">
-                    <h6 class="mb-3">Procurar usuários</h6>
-                    <input type="text" name="search_people" id="search_people" class="form-control" placeholder="Procure pelo nome..." autocomplete="off" />
-                    <div id="search_people_area" class="mt-3"></div>
-                </div>
-                <div class="pt-4 pb-4 h-50 overflow-auto">
-                    <h6 class="mb-3">Solicitações de contato</h6>
-                    <div id="notification_area" class="mt-3"></div>
-                </div>
-            </div>
+            <div class="col"><button type="button" class="btn btn-danger btn-sm float-end" id="close_chat1" onclick="Mudarestado('minhaDiv')">Fechar</button>
         </div>
+        <div id="notification_area" class=""></div>
+        <div class="pt-4 pb-4 h-50 overflow-auto">
+        <input type="text" name="search_people" id="search_people" class="form-control" placeholder="Procure usuário" autocomplete="off" />
+        <div id="search_people_area" class="mt-3"></div>
     </div>
+    Conecte-se
+    <div  id="connected_people_area"></div>
+    
+                <div id="chat_area"></div></div>
+<button type="hidden" class="btn btn-secondary btn-sm" id="setting_button">Setting</button>
+<button type="hidden" class="btn btn-primary btn-sm" id="logout_button">Logout</button>
+</div></div></div></div></div></div></div></div></div></div>
+
 
 </body>
-
 </html>
 
+
+
+
+<style type="text/css">
+    fab{
+  position: fixed;
+  bottom:10px;
+  right:10px;
+}
+.fab button{
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  border-radius: 30px;
+  background-color: #cb60b3;
+  border: none;
+  box-shadow: 0 1px 5px rgba(0,0,0,.4);
+  font-size: 24px;
+  color: white;
+    
+  -webkit-transition: .2s ease-out;
+  -moz-transition: .2s ease-out;
+  transition: .2s ease-out;
+}
+.fab button.main{
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: #5b19b7;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+}
+</style>
+
+<div class="fab"  ontouchstart="">
+  <button class="main" onclick="Mudarestado('minhaDiv')">💬</button>
+</div>
+
+
+
+
 <script>
+
+    function Mudarestado(el) {
+        var display = document.getElementById(el).style.display;
+        if(display == "none")
+            document.getElementById(el).style.display = 'block';
+        else
+            document.getElementById(el).style.display = 'none';
+    }
+
+
 
 function $(selector)
 {
@@ -82,8 +129,8 @@ function check_login()
 
         if(responseData.user_name && responseData.image)
         {
-            _('login_user_name').innerHTML = '<h3>' + responseData.user_name + '</h3>';
-            _('login_user_image').innerHTML = '<img src="'+responseData.image+'" width="150" class="bi me-2 rounded-circle img-fluid user_uploaded_image" />';
+           
+            _('login_user_image').innerHTML = '<img src="'+responseData.image+'" class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"/>' +'' + responseData.user_name + '';
 
             load_chat_request();
         }
@@ -146,7 +193,7 @@ $('#search_people').onkeyup = function(){
                     html += '<div class="pb-4 mb-0 small lh-sm border-bottom w-100">';
                     html += '<div class="d-flex justify-content-between">';
                     html += '<strong class="text-gray-dark">'+responseData[i].un+'</strong>';
-                    html += '<button type="button" name="chat_connect" class="btn btn-primary btn-sm chat_connect" id="'+responseData[i].uc+'">Connect</button>'
+                    html += '<button type="button" name="chat_connect" class="btn btn-primary btn-sm chat_connect" id="'+responseData[i].uc+'">Conectar</button>'
                     html += '</div>';
                     html += '</div>';
                 }
@@ -240,8 +287,8 @@ function load_chat_request()
             }
         }
         else
-        {
-            html += '<strong class="text-gray-dark">Sem solicitações de contato.</strong>';
+        {   //por texto Sem solicitações de contato abaixo
+            html += '<strong class="text-gray-dark"></strong>';
         }
         $('#notification_area').innerHTML = html;
 
@@ -319,17 +366,26 @@ function load_chat_connected_people()
         var html = '';
         if(responseData.length > 0)
         {
+            //pega o nome das pessoas e grava em um array que vai via cookies
+            const array_nomes = [];
+            const array_botoes = [];
             for(var i = 0; i < responseData.length; i++)
             {
                 html += '<div class="d-flex text-muted pt-3">';
                 html += '<img class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" src="images/'+responseData[i].ui+'" />';
-                html += '<div class="pb-4 mb-0 small lh-sm border-bottom w-100">';
+                html += '<div class="pb-4 mb-0 small lh-sm border-top w-100">';
                 html += '<div class="d-flex justify-content-between">';
                 html += '<strong class="text-gray-dark">'+responseData[i].un+'</strong>';
                 html += '<button type="button" name="start_request" class="btn btn-warning btn-sm start_request" id="'+responseData[i].uc+'">Entrar</button>';
                 html += '</div>';
                 html += '</div></div>';
+            
+
             }
+
+
+           
+
         }
         else
         {
@@ -342,7 +398,6 @@ function load_chat_connected_people()
             var elements = document.getElementsByClassName("start_request");
 
             //console.log(elements);
-
             for(var i = 0; i < elements.length; i++)
             {
 
@@ -361,16 +416,16 @@ function load_chat_connected_people()
 
 function reset_chat_area()
 {
-    var html = '<div class="row vh-100 align-items-center justify-content-center text-muted fw-bold">Selecione um usuário para iniciar o chat.</div>';
-    $('#chat_area').innerHTML = html;
-    clearInterval(interval);
+    //var html = '<div class="row vh-100 align-items-center justify-content-center text-muted fw-bold">Selecione um usuário para iniciar o chat.</div>';
+    //$('#chat_area').innerHTML = html;
+    //clearInterval(interval);
 }
 
 function start_chat(uc)
 {
     reset_chat_area();
-    var html = '<div style="width: 350px; height: 550px; z-index: 9; position:absolute; float: right; margin-bottom: 0; position: absolute; right: 0px; bottom: 0;">';
-    html += '<div id="chat_msg_area" class="pt-2 pb-2" style="height: 58vh;">';
+    var html = '<div style="width: 300px; height: 850px; z-index: 9; position:absolute; float: right; margin-bottom: 0; position: absolute; right: 0px; bottom: 0;">';
+    html += '<div id="chat_msg_area" class="pt-2 pb-2" style="height: 38vh;">';
     html += '<div class="card h-100">';
     html += '<div class="card-header"><div class="row"><div class="col" id="chat_user_data"></div><div class="col"><button type="button" class="btn btn-danger btn-sm float-end" id="close_chat">Fechar</button></div></div></div>';
     html += '<div class="card-body overflow-auto" id="chat_conversion"></div>';
@@ -430,6 +485,11 @@ function start_chat(uc)
     $('#close_chat').onclick = function(){
         $('#chat_area').innerHTML = '';
         reset_chat_area();
+    };
+
+    $('#close_chat1').onclick = function(){
+        $('#chat_area1').innerHTML = '';
+        reset_chat_area1();
     };
 
     $('#button-addon2').onclick = function(){
