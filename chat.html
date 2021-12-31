@@ -21,12 +21,12 @@
 
   
 
-<div class="content"></div>
 
-    <div class="container-fluid" id="minhaDiv">
+
+    <div class="container-fluid" id="minhaDiv" >
 
       
-        <div style="width: 300px; height: auto; z-index: 1; position:absolute; float: right; margin-bottom: 0; position: absolute; right: 0px; bottom: 0;">
+        <div style="width: 300px; height: auto; z-index: 1; position:absolute; float: right; margin-bottom: 0; position: absolute; right: 0px; bottom: 40px;">
     <div id="chat_msg_area1" class="pt-2 pb-2" style="height: 38vh;">
  
     <div class="card-header">
@@ -34,7 +34,7 @@
             <div class="col" id="chat_user_data1" style="margin-bottom: 7px;">
                 <span  id="login_user_image"></span>
             </div>
-            <div class="col"><button type="button" class="btn btn-danger btn-sm float-end" id="close_chat1" onclick="Mudarestado('minhaDiv')">Fechar</button>
+            <div class="col"><button type="button" class="btn btn-danger btn-sm float-end" id="close_chat1" onclick="Mudarestado('minhaDiv')">X</button>
         </div>
         <div id="notification_area" class=""></div>
         <div class="pt-4 pb-4 h-50 overflow-auto">
@@ -45,8 +45,8 @@
     <div  id="connected_people_area"></div>
     
                 <div id="chat_area"></div></div>
-<button type="hidden" class="btn btn-secondary btn-sm" id="setting_button">Setting</button>
-<button type="hidden" class="btn btn-primary btn-sm" id="logout_button">Logout</button>
+<button hidden class="btn btn-secondary btn-sm" id="setting_button">Setting</button>
+<button hidden class="btn btn-primary btn-sm" id="logout_button">Logout</button>
 </div></div></div></div></div></div></div></div></div></div>
 
 
@@ -55,7 +55,7 @@
 
 
 
-
+<!-- abre e fecha o chat -->
 <style type="text/css">
     fab{
   position: fixed;
@@ -88,16 +88,14 @@
   z-index: 20;
 }
 </style>
-
+<!-- abre e fecha o chat -->
 <div class="fab"  ontouchstart="">
   <button class="main" onclick="Mudarestado('minhaDiv')">💬</button>
 </div>
 
 
-
-
 <script>
-
+    //abre e fecha o chat
     function Mudarestado(el) {
         var display = document.getElementById(el).style.display;
         if(display == "none")
@@ -106,7 +104,8 @@
             document.getElementById(el).style.display = 'none';
     }
 
-
+    //remover este inicio de função para o chat ja começar aberto
+    Mudarestado('minhaDiv');
 
 function $(selector)
 {
@@ -424,8 +423,8 @@ function reset_chat_area()
 function start_chat(uc)
 {
     reset_chat_area();
-    var html = '<div style="width: 300px; height: 850px; z-index: 9; position:absolute; float: right; margin-bottom: 0; position: absolute; right: 0px; bottom: 0;">';
-    html += '<div id="chat_msg_area" class="pt-2 pb-2" style="height: 38vh;">';
+    var html = '<div style="width: 300px; height: auto; z-index: 1; position:absolute; float: right; margin-bottom: 0; position: absolute; right: 0px; bottom: 0;">';
+    html += '<div id="chat_msg_area" class="pt-2 pb-2" style="height: 58vh;">';
     html += '<div class="card h-100">';
     html += '<div class="card-header"><div class="row"><div class="col" id="chat_user_data"></div><div class="col"><button type="button" class="btn btn-danger btn-sm float-end" id="close_chat">Fechar</button></div></div></div>';
     html += '<div class="card-body overflow-auto" id="chat_conversion"></div>';
@@ -488,8 +487,9 @@ function start_chat(uc)
     };
 
     $('#close_chat1').onclick = function(){
-        $('#chat_area1').innerHTML = '';
-        reset_chat_area1();
+        //$('#chat_area1').innerHTML = '';
+        //reset_chat_area1();
+        Mudarestado('minhaDiv');
     };
 
     $('#button-addon2').onclick = function(){
