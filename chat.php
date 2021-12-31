@@ -20,7 +20,10 @@
 
 
     <div class="container-fluid" id="minhaDiv" >
-        <div style="width: 300px; max-height: 800px; z-index: 1; position:absolute; float: right; margin-bottom: 0; position: absolute; right: 0px; bottom: 0px; overflow:auto; ">
+
+        <!-- <div style="width: 300px; max-height: 800px; z-index: 1; position:absolute; float: right; margin-bottom: 0; position: absolute; right: 0px; bottom: 0px; overflow:auto; background-color: #F7F7F7;"> -->
+
+            <div style="width: 300px; max-height: 800px; z-index: 1; position:absolute;  right: 0px; margin-bottom: 30px; bottom: 0px; overflow:auto; background-color: #F7F7F7;">
     <div id="chat_msg_area1" class="pt-2 pb-2" style="height: 30vh;">
  
     <div class="card-header">
@@ -60,13 +63,13 @@
 }
 .fab button{
   cursor: pointer;
-  width: 48px;
-  height: 48px;
+  width: 35px;
+  height: 35px;
   border-radius: 30px;
   background-color: #cb60b3;
   border: none;
   box-shadow: 0 1px 5px rgba(0,0,0,.4);
-  font-size: 24px;
+  font-size: 20px;
   color: white;
     
   -webkit-transition: .2s ease-out;
@@ -75,12 +78,12 @@
 }
 .fab button.main{
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   border-radius: 30px;
   background-color: #5b19b7;
-  right: 0;
-  bottom: 0;
+  right: 0px;
+  bottom: 10px;
   z-index: 20;
 }
 </style>
@@ -375,13 +378,7 @@ function load_chat_connected_people()
                 html += '<button type="button" name="start_request" class="btn btn-warning btn-sm start_request" id="'+responseData[i].uc+'">Entrar</button>';
                 html += '</div>';
                 html += '</div></div>';
-            
-
             }
-
-
-           
-
         }
         else
         {
@@ -421,12 +418,12 @@ function start_chat(uc)
 {
     reset_chat_area();
     Mudarestado('btn_chat');
-    var html = '<div style="width: 350px; height: auto; z-index: 1; position:absolute; float: right; margin-bottom: 0; position: absolute; right: 0px; bottom: 0;">';
+    var html = '<div style="width: 350px; height: auto; z-index: 1; position:absolute; float: right; margin-bottom: 20px; position: absolute; right: 0px; bottom: 0;">';
     html += '<div id="chat_msg_area" class="pt-2 pb-2" style="height: 58vh;">';
     html += '<div class="card h-100">';
     html += '<div class="card-header"><div class="row"><div class="col" id="chat_user_data"></div><div class="col"><button type="button" class="btn btn-danger btn-sm float-end" id="close_chat">Fechar</button></div></div></div>';
     html += '<div class="card-body overflow-auto" id="chat_conversion"></div>';
-    html += '<textarea rows="1" name="type_chat_message" id="type_chat_message" class="form-control" placeholder="Mensagem..." aria-label="Escreva sua mensagem..." aria-describedby="button-addon2"></textarea>';
+    html += '<input name="type_chat_message" id="type_chat_message" class="form-control" placeholder="Mensagem..." aria-label="Escreva sua mensagem..." aria-describedby="button-addon2"></input>';
     html += '<input type="hidden" name="hidden_receiver_id" id="hidden_receiver_id" value="'+uc+'" /><input type="hidden" id="hidden_last_chat_datetime" />';
     html += '<button hidden class="btn btn-success" type="button" id="button-addon2">Enviar</button>';
     html += '</div>';
